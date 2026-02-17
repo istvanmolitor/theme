@@ -1,0 +1,28 @@
+{
+    "name": "istvanmolitor/theme",
+    "description": "Theme package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Molitor István",
+            "email": "istvanmolitor@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "istvanmolitor/theme": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "Molitor\\Theme\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Molitor\\Theme\\Providers\\ThemeServiceProvider"
+            ]
+        }
+    }
+}
