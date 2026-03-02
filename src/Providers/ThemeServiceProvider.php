@@ -3,6 +3,8 @@
 namespace Molitor\Theme\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Molitor\Setting\Services\SettingHandlerService;
+use Molitor\Theme\Services\ThemeSettingForm;
 
 class ThemeServiceProvider extends ServiceProvider
 {
@@ -12,6 +14,8 @@ class ThemeServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/theme.php' => config_path('theme.php'),
         ], 'theme-config');
+
+        $this->app->make(SettingHandlerService::class)->register(ThemeSettingForm::class);
     }
 
     public function register()
