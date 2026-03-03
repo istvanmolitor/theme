@@ -17,11 +17,6 @@ class ThemeServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Publish config file
-        $this->publishes([
-            __DIR__ . '/../../config/theme.php' => config_path('theme.php'),
-        ], 'theme-config');
-
         $registry = $this->app->make(ThemeRegistry::class);
         $registry->register(DefaultTheme::class);
         $registry->register(DarkMinimalTheme::class);
@@ -33,12 +28,6 @@ class ThemeServiceProvider extends ServiceProvider
 
     public function register()
     {
-        // Merge config file
-        $this->mergeConfigFrom(
-            __DIR__ . '/../../config/theme.php',
-            'theme'
-        );
-
         $this->app->singleton(ThemeRegistry::class);
 
         $this->app->make(SettingHandler::class)->registerSettingForm(ThemeSettingForm::class);
