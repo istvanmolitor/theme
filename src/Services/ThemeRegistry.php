@@ -3,6 +3,7 @@
 namespace Molitor\Theme\Services;
 
 use Exception;
+use Molitor\Setting\Services\SettingHandler;
 
 class ThemeRegistry
 {
@@ -41,6 +42,15 @@ class ThemeRegistry
     public function getTheme(string $slug): ?Theme
     {
         return $this->themes[$slug] ?? null;
+    }
+
+    public function getActiveTheme(): ?Theme
+    {
+        $slug = app(SettingHandler::class)->get('theme', 'theme');
+        if (!$slug) {
+            return null;
+        }
+        return $this->getTheme($slug);
     }
 
     public function toArray(): array
