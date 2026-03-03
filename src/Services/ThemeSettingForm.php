@@ -13,41 +13,26 @@ class ThemeSettingForm extends SettingForm
 
     public function getLabel(): string
     {
-        return 'Theme Settings';
+        return 'Téma';
     }
 
-    public function getForm(): array
+    public function getFields(): array
     {
         return [
-            'name' => 'Theme Settings',
-            'schema' => [
-                'primary_color' => [
-                    'type' => 'color',
-                    'label' => 'Primary Color',
-                    'default' => '#3b82f6',
-                ],
-                'secondary_color' => [
-                    'type' => 'color',
-                    'label' => 'Secondary Color',
-                    'default' => '#10b981',
-                ],
-            ],
+            'theme',
         ];
     }
 
-    public function getFormFields(): array
+    public function getDefaultValues(): array
     {
         return [
-            'primary_color',
-            'secondary_color',
+            'theme' => null,
         ];
     }
 
-    public function getDefaults(): array
+    public function getData(): array
     {
-        return [
-            'primary_color' => '#3b82f6',
-            'secondary_color' => '#10b981',
-        ];
+        return app(ThemeRegistry::class)->toArray();
     }
+
 }
