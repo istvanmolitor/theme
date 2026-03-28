@@ -5,6 +5,7 @@ namespace Molitor\Theme\Services;
 abstract class Theme
 {
     abstract public function getName(): string;
+
     abstract public function getSlug(): string;
 
     public function getDescription(): string
@@ -29,7 +30,7 @@ abstract class Theme
      */
     public function getViewPath(): ?string
     {
-        $path = realpath(__DIR__ . '/../../resources/views/themes/' . $this->getSlug());
+        $path = realpath(__DIR__.'/../../resources/views/themes/'.$this->getSlug());
 
         return $path ?: null;
     }

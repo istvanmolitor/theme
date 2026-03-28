@@ -26,4 +26,3 @@ class NatureTheme extends Theme
         return 'https://placehold.co/400x250/16a34a/ffffff?text=Nature';
     }
 }
-

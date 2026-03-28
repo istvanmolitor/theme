@@ -26,4 +26,3 @@ class CorporateTheme extends Theme
         return 'https://placehold.co/400x250/0369a1/ffffff?text=Corporate';
     }
 }
-

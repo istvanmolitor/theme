@@ -16,16 +16,14 @@ class ThemeRegistry
     }
 
     /**
-     * @param string|Theme $themeClass
-     * @return void
      * @throws Exception
      */
     public function register(string|Theme $themeClass): void
     {
         $theme = is_string($themeClass) ? app($themeClass) : $themeClass;
 
-        if (!$theme instanceof Theme) {
-             throw new Exception("A regisztrált osztálynak a BaseTheme-ből kell származnia.");
+        if (! $theme instanceof Theme) {
+            throw new Exception('A regisztrált osztálynak a BaseTheme-ből kell származnia.');
         }
 
         $this->themes[$theme->getSlug()] = $theme;
@@ -47,9 +45,10 @@ class ThemeRegistry
     public function getActiveTheme(): ?Theme
     {
         $slug = app(SettingHandler::class)->get('theme', 'theme');
-        if (!$slug) {
+        if (! $slug) {
             return null;
         }
+
         return $this->getTheme($slug);
     }
 
@@ -60,6 +59,7 @@ class ThemeRegistry
         foreach ($this->getThemes() as $theme) {
             $themes[$theme->getSlug()] = $theme->toArray();
         }
+
         return $themes;
     }
 }

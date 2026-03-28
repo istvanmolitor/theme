@@ -34,5 +34,4 @@ class ThemeSettingForm extends SettingForm
     {
         return app(ThemeRegistry::class)->toArray();
     }
-
 }

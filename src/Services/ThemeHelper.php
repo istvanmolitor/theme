@@ -12,10 +12,8 @@ class ThemeHelper
      * Ha a témában létezik a megfelelő blade fájl, azt tölti be,
      * egyébként az eredeti view-t.
      *
-     * @param  string  $view    A view neve (pl. 'cms::page.show')
-     * @param  array   $data    Az átadandó adatok
-     * @param  array   $mergeData
-     * @return View
+     * @param  string  $view  A view neve (pl. 'cms::page.show')
+     * @param  array  $data  Az átadandó adatok
      */
     public static function view(string $view, array $data = [], array $mergeData = []): View
     {
@@ -26,19 +24,19 @@ class ThemeHelper
 
             if ($themeViewPath) {
                 // Konvertáljuk a view nevet fájlútvonallá (pl. cms::page.show -> page/show.blade.php)
-                $viewFile = str_replace('.', '/', static::stripNamespace($view)) . '.blade.php';
-                $fullPath = rtrim($themeViewPath, '/') . '/' . $viewFile;
+                $viewFile = str_replace('.', '/', static::stripNamespace($view)).'.blade.php';
+                $fullPath = rtrim($themeViewPath, '/').'/'.$viewFile;
 
                 if (file_exists($fullPath)) {
                     // Ideiglenesen regisztráljuk a téma view-könyvtárát egyedi namespace-szel
-                    $themeNamespace = 'theme_override_' . $activeTheme->getSlug();
+                    $themeNamespace = 'theme_override_'.$activeTheme->getSlug();
 
-                    if (!ViewFacade::exists($themeNamespace . '::' . static::stripNamespace($view))) {
+                    if (! ViewFacade::exists($themeNamespace.'::'.static::stripNamespace($view))) {
                         ViewFacade::addNamespace($themeNamespace, $themeViewPath);
                     }
 
                     return ViewFacade::make(
-                        $themeNamespace . '::' . static::stripNamespace($view),
+                        $themeNamespace.'::'.static::stripNamespace($view),
                         $data,
                         $mergeData
                     );
@@ -58,7 +56,7 @@ class ThemeHelper
         if (str_contains($view, '::')) {
             return explode('::', $view, 2)[1];
         }
+
         return $view;
     }
 }
-

@@ -26,4 +26,3 @@ class PastelDreamTheme extends Theme
         return 'https://placehold.co/400x250/f9a8d4/4a044e?text=Pastel+Dream';
     }
 }
-

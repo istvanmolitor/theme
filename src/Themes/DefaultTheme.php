@@ -26,4 +26,3 @@ class DefaultTheme extends Theme
         return 'https://placehold.co/400x250/6366f1/ffffff?text=Default';
     }
 }
-

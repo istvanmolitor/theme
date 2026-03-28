@@ -26,4 +26,3 @@ class WarmSunsetTheme extends Theme
         return 'https://placehold.co/400x250/ea580c/fff7ed?text=Warm+Sunset';
     }
 }
-

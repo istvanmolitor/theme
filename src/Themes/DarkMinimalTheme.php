@@ -26,4 +26,3 @@ class DarkMinimalTheme extends Theme
         return 'https://placehold.co/400x250/1e1e2e/cdd6f4?text=Dark+Minimal';
     }
 }
-
