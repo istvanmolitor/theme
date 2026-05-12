@@ -27,7 +27,7 @@ class ThemeServiceProvider extends ServiceProvider
         $registry->register(WarmSunsetTheme::class);
         $registry->register(PastelDreamTheme::class);
 
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/themes', 'theme');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'theme');
 
         Blade::directive('themeInclude', function ($expression) {
             return "<?php echo app(\Molitor\Theme\Services\ThemeHelper::class)->view({$expression})->render(); ?>";

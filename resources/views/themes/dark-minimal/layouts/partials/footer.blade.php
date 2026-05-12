@@ -1,7 +1,7 @@
 <footer class="bg-slate-950 text-slate-400 mt-auto border-t border-slate-900">
     {{-- Content Region for custom footer content --}}
     <div class="bg-slate-900/30">
-        <x-cms-content-region name="footer" />
+        @yield('footer')
     </div>
 
     <div class="container mx-auto px-4 py-16">

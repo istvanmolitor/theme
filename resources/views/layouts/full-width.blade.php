@@ -1,9 +1,5 @@
-@extends('theme::layouts.base')
+@extends('theme::layouts.default')
 
-@section('body')
-    @themeInclude('theme::layouts.partials.header')
-    <main class="flex-grow">
-        @yield('content')
-    </main>
-    @themeInclude('theme::layouts.partials.footer')
+@section('main')
+    @yield('content')
 @endsection

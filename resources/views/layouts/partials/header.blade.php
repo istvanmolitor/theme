@@ -11,7 +11,7 @@
             {{-- Desktop Navigation --}}
             <div class="hidden md:flex items-center space-x-4">
                 <nav class="flex space-x-8">
-                    <x-cms-menu name="main" />
+                    @yield('menu')
                 </nav>
                 <x-language-switcher />
             </div>
@@ -32,13 +32,13 @@
         {{-- Mobile Navigation --}}
         <div id="mobile-menu" class="hidden md:hidden pb-4">
             <div class="flex flex-col space-y-2">
-                <x-cms-menu name="main" />
+                @yield('menu')
             </div>
         </div>
     </div>
 
     {{-- Content Region for custom header content --}}
     <div class="border-t border-gray-100">
-        <x-cms-content-region name="header" />
+        @yield('header')
     </div>
 </header>

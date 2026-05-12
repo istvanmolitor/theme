@@ -2,7 +2,7 @@
     {{-- Content Region for custom footer content --}}
     <div class="h-1 bg-gradient-to-r from-pink-200 via-purple-200 to-indigo-200"></div>
     <div class="py-4">
-        <x-cms-content-region name="footer" />
+        @yield('footer')
     </div>
 
     <div class="container mx-auto px-6 py-16">

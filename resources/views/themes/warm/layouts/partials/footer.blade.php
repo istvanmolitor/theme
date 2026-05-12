@@ -1,7 +1,7 @@
 <footer class="bg-orange-700 text-white mt-auto border-t border-orange-800">
     {{-- Content Region for custom footer content --}}
     <div class="bg-orange-800/50 py-4">
-        <x-cms-content-region name="footer" />
+        @yield('footer')
     </div>
 
     <div class="container mx-auto px-4 py-16">

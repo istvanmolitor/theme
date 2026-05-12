@@ -24,7 +24,7 @@
 
             {{-- Desktop Navigation --}}
             <nav class="hidden lg:flex space-x-1">
-                <x-cms-menu name="main" />
+                @yield('menu')
             </nav>
 
             {{-- Mobile menu button --}}
@@ -42,13 +42,13 @@
         {{-- Mobile Navigation --}}
         <div id="mobile-menu" class="hidden lg:hidden pb-6 pt-2">
             <div class="flex flex-col space-y-1">
-                <x-cms-menu name="main" />
+                @yield('menu')
             </div>
         </div>
     </div>
 
     {{-- Content Region for custom header content --}}
     <div class="border-t border-slate-100">
-        <x-cms-content-region name="header" />
+        @yield('header')
     </div>
 </header>

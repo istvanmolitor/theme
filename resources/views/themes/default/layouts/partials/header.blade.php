@@ -10,7 +10,7 @@
 
             {{-- Desktop Navigation --}}
             <nav class="hidden md:flex space-x-8">
-                <x-cms-menu name="main" />
+                @yield('menu')
             </nav>
 
             {{-- Mobile menu button --}}
@@ -28,13 +28,13 @@
         {{-- Mobile Navigation --}}
         <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 py-3">
             <div class="flex flex-col space-y-1">
-                <x-cms-menu name="main" />
+                @yield('menu')
             </div>
         </div>
     </div>
 
     {{-- Content Region for custom header content --}}
     <div class="bg-gray-50">
-        <x-cms-content-region name="header" />
+        @yield('header')
     </div>
 </header>
