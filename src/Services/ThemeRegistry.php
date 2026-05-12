@@ -7,6 +7,8 @@ use Molitor\Setting\Services\SettingHandler;
 
 class ThemeRegistry
 {
+    protected ?Theme $activeTheme = null;
+
     /** @var array<string, Theme> */
     protected array $themes = [];
 
@@ -44,12 +46,16 @@ class ThemeRegistry
 
     public function getActiveTheme(): ?Theme
     {
-        $slug = app(SettingHandler::class)->get('theme', 'theme');
-        if (! $slug) {
-            return null;
+        if ($this->activeTheme === null) {
+            $slug = app(SettingHandler::class)->get('theme', 'theme');
+            if (! $slug) {
+                return null;
+            }
+
+            $this->activeTheme = $this->getTheme($slug);
         }
 
-        return $this->getTheme($slug);
+        return $this->activeTheme;
     }
 
     public function toArray(): array

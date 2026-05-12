@@ -5,6 +5,7 @@ namespace Molitor\Theme\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Molitor\Setting\Services\SettingHandler;
+use Molitor\Theme\Services\ThemeHelper;
 use Molitor\Theme\Services\ThemeRegistry;
 use Molitor\Theme\Services\ThemeSettingForm;
 use Molitor\Theme\Themes\CorporateTheme;
@@ -26,8 +27,10 @@ class ThemeServiceProvider extends ServiceProvider
         $registry->register(WarmSunsetTheme::class);
         $registry->register(PastelDreamTheme::class);
 
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/themes', 'theme');
+
         Blade::directive('themeInclude', function ($expression) {
-            return "<?php echo \Molitor\Theme\Services\ThemeHelper::view($expression)->render(); ?>";
+            return "<?php echo app(\Molitor\Theme\Services\ThemeHelper::class)->view({$expression})->render(); ?>";
         });
     }
 

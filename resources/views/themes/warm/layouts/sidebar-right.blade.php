@@ -1,4 +1,4 @@
-@extends('cms::layouts.page')
+@extends('theme::layouts.page')
 
 @section('page')
     <div class="container mx-auto px-4 py-12">
@@ -10,7 +10,7 @@
             </main>
             <aside class="w-full lg:w-1/4">
                 <div class="bg-orange-50 border border-orange-100 rounded-xl p-6 sticky top-24">
-                    <x-cms-content-region name="sidebar" />
+                    @yield('sidebar')
                 </div>
             </aside>
         </div>

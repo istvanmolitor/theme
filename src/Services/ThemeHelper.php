@@ -7,56 +7,57 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ThemeHelper
 {
-    /**
-     * Visszaad egy view-t, az aktív téma view-könyvtárát figyelembe véve.
-     * Ha a témában létezik a megfelelő blade fájl, azt tölti be,
-     * egyébként az eredeti view-t.
-     *
-     * @param  string  $view  A view neve (pl. 'cms::page.show')
-     * @param  array  $data  Az átadandó adatok
-     */
-    public static function view(string $view, array $data = [], array $mergeData = []): View
+    public function __construct(
+        protected ThemeRegistry $themeRegistry
+    )
     {
-        $activeTheme = app(ThemeRegistry::class)->getActiveTheme();
+    }
 
-        if ($activeTheme) {
-            $themeViewPath = $activeTheme->getViewPath();
+    public function getActiveTheme(): ?Theme
+    {
+        return $this->themeRegistry->getActiveTheme();
+    }
 
-            if ($themeViewPath) {
-                // Konvertáljuk a view nevet fájlútvonallá (pl. cms::page.show -> page/show.blade.php)
-                $viewFile = str_replace('.', '/', static::stripNamespace($view)).'.blade.php';
-                $fullPath = rtrim($themeViewPath, '/').'/'.$viewFile;
+    public function getRealView(string $view): string
+    {
+        $themeSlug = $this->getActiveTheme()->getSlug();
 
-                if (file_exists($fullPath)) {
-                    // Ideiglenesen regisztráljuk a téma view-könyvtárát egyedi namespace-szel
-                    $themeNamespace = 'theme_override_'.$activeTheme->getSlug();
+        if( str_contains($view, '::') ) {
+            $parts = explode('::', $view);
+            $namespace = $parts[0];
+            $name = $parts[1];
+        }
+        else {
+            $namespace = '';
+            $name = $view;
+        }
 
-                    if (! ViewFacade::exists($themeNamespace.'::'.static::stripNamespace($view))) {
-                        ViewFacade::addNamespace($themeNamespace, $themeViewPath);
-                    }
+        $views = [
+            'themes.' . $themeSlug . '.' . $name,
+            'themes.' . $themeSlug . '.' . $namespace . '.' . $name,
+            $namespace . '::themes.' . $themeSlug . '.' . $name,
+            $namespace . '::'. $name,
+            'theme::themes.' . $themeSlug . '.' . $name,
+            'theme::' . $name,
+            $name,
+        ];
 
-                    return ViewFacade::make(
-                        $themeNamespace.'::'.static::stripNamespace($view),
-                        $data,
-                        $mergeData
-                    );
-                }
+        foreach( $views as $view ) {
+            if( $this->viewExists($view) ) {
+                return $view;
             }
         }
 
-        return ViewFacade::make($view, $data, $mergeData);
+        throw new \Exception("View: {$namespace}::{$view}. Theme: {$themeSlug}.");
     }
 
-    /**
-     * Eltávolítja a namespace prefixet a view névből.
-     * Pl. 'cms::page.show' -> 'page.show', 'page.show' -> 'page.show'
-     */
-    protected static function stripNamespace(string $view): string
+    protected function viewExists(string $view): bool
     {
-        if (str_contains($view, '::')) {
-            return explode('::', $view, 2)[1];
-        }
+        return view()->exists($view);
+    }
 
-        return $view;
+    public function view(string $view, array $data = []): View
+    {
+        return ViewFacade::make($this->getRealView($view), $data);
     }
 }
