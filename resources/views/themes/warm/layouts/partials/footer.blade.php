@@ -24,11 +24,15 @@
             {{-- Navigation --}}
             <div>
                 <h3 class="text-white text-xl font-black italic uppercase mb-6 tracking-tighter">Linkek</h3>
+                @php($footerMenuItems = app(\Molitor\Menu\Services\MenuManager::class)->build('footer')->getMenuItems())
                 <ul class="space-y-4 text-sm font-bold uppercase tracking-tight">
-                    <li><a href="/" class="hover:underline decoration-white decoration-2 underline-offset-4">Főoldal</a></li>
-                    <li><a href="/blog" class="hover:underline decoration-white decoration-2 underline-offset-4">Blog</a></li>
-                    <li><a href="/about" class="hover:underline decoration-white decoration-2 underline-offset-4">Rólunk</a></li>
-                    <li><a href="/contact" class="hover:underline decoration-white decoration-2 underline-offset-4">Kapcsolat</a></li>
+                    @foreach ($footerMenuItems as $item)
+                        <li>
+                            <a href="{{ $item->getUrl() ?? '#' }}" class="hover:underline decoration-white decoration-2 underline-offset-4">
+                                {{ $item->getLabel() }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 

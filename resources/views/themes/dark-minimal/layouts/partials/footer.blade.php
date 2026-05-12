@@ -19,11 +19,15 @@
             {{-- Navigation --}}
             <div>
                 <h3 class="text-white text-xs font-medium uppercase tracking-widest mb-6">Navigáció</h3>
+                @php($footerMenuItems = app(\Molitor\Menu\Services\MenuManager::class)->build('footer')->getMenuItems())
                 <ul class="space-y-4 text-xs tracking-wide">
-                    <li><a href="/" class="hover:text-white transition-colors">Kezdőlap</a></li>
-                    <li><a href="/projects" class="hover:text-white transition-colors">Projektek</a></li>
-                    <li><a href="/about" class="hover:text-white transition-colors">Rólunk</a></li>
-                    <li><a href="/contact" class="hover:text-white transition-colors">Kapcsolat</a></li>
+                    @foreach ($footerMenuItems as $item)
+                        <li>
+                            <a href="{{ $item->getUrl() ?? '#' }}" class="hover:text-white transition-colors">
+                                {{ $item->getLabel() }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 

@@ -25,11 +25,15 @@
             {{-- Quick Links --}}
             <div>
                 <h3 class="text-white text-sm font-bold uppercase tracking-widest mb-6 border-b border-sky-700 pb-2 inline-block">Szolgáltatások</h3>
+                @php($footerMenuItems = app(\Molitor\Menu\Services\MenuManager::class)->build('footer')->getMenuItems())
                 <ul class="space-y-3 text-sm">
-                    <li><a href="/solutions" class="hover:text-sky-400 transition-colors">Üzleti megoldások</a></li>
-                    <li><a href="/consulting" class="hover:text-sky-400 transition-colors">Tanácsadás</a></li>
-                    <li><a href="/careers" class="hover:text-sky-400 transition-colors">Karrier</a></li>
-                    <li><a href="/privacy" class="hover:text-sky-400 transition-colors">Adatvédelem</a></li>
+                    @foreach ($footerMenuItems as $item)
+                        <li>
+                            <a href="{{ $item->getUrl() ?? '#' }}" class="hover:text-sky-400 transition-colors">
+                                {{ $item->getLabel() }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 

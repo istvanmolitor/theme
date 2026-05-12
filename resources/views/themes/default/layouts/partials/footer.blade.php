@@ -17,10 +17,15 @@
             {{-- Quick Links --}}
             <div>
                 <h3 class="text-slate-900 text-sm font-bold uppercase tracking-wider mb-4">Linkek</h3>
+                @php($footerMenuItems = app(\Molitor\Menu\Services\MenuManager::class)->build('footer')->getMenuItems())
                 <ul class="space-y-2 text-sm">
-                    <li><a href="/" class="hover:text-slate-900 transition-colors">Főoldal</a></li>
-                    <li><a href="/about" class="hover:text-slate-900 transition-colors">Rólunk</a></li>
-                    <li><a href="/contact" class="hover:text-slate-900 transition-colors">Kapcsolat</a></li>
+                    @foreach ($footerMenuItems as $item)
+                        <li>
+                            <a href="{{ $item->getUrl() ?? '#' }}" class="hover:text-slate-900 transition-colors">
+                                {{ $item->getLabel() }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 

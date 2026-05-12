@@ -22,11 +22,15 @@
             {{-- Navigation --}}
             <div>
                 <h3 class="text-emerald-400 font-serif italic text-lg mb-6">Felfedezés</h3>
+                @php($footerMenuItems = app(\Molitor\Menu\Services\MenuManager::class)->build('footer')->getMenuItems())
                 <ul class="space-y-4 text-sm tracking-wide">
-                    <li><a href="/" class="hover:text-white transition-colors flex items-center"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>Kezdőlap</a></li>
-                    <li><a href="/about" class="hover:text-white transition-colors flex items-center"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>Rólunk</a></li>
-                    <li><a href="/services" class="hover:text-white transition-colors flex items-center"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>Szolgáltatások</a></li>
-                    <li><a href="/contact" class="hover:text-white transition-colors flex items-center"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>Kapcsolat</a></li>
+                    @foreach ($footerMenuItems as $item)
+                        <li>
+                            <a href="{{ $item->getUrl() ?? '#' }}" class="hover:text-white transition-colors flex items-center">
+                                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>{{ $item->getLabel() }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 
