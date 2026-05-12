@@ -10,7 +10,7 @@
 
             {{-- Desktop Navigation --}}
             <nav class="hidden md:flex space-x-12">
-                @yield('menu')
+                @themeInclude('layouts.partials.menu', ['menuName' => $menuName ?? 'main', 'variant' => 'desktop'])
             </nav>
 
             {{-- Mobile menu button --}}
@@ -28,7 +28,7 @@
         {{-- Mobile Navigation --}}
         <div id="mobile-menu" class="hidden md:hidden pb-8 border-t border-slate-900 pt-4">
             <div class="flex flex-col space-y-4">
-                @yield('menu')
+                @themeInclude('layouts.partials.menu', ['menuName' => $menuName ?? 'main', 'variant' => 'mobile'])
             </div>
         </div>
     </div>
