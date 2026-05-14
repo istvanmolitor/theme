@@ -47,7 +47,7 @@ class LayoutService
     public function getLayoutTemplate(string $layoutName = null): string
     {
         if ($layoutName === null || ! $this->isValidLayout($layoutName)) {
-            $layoutName = 'default';
+            $layoutName = 'container';
         }
 
         return $this->themeHelper->getRealView('layouts.' . $layoutName);
