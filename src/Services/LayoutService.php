@@ -8,19 +8,23 @@ class LayoutService
 {
     protected array $configs = [
         'default' => [
-            'name' => 'Default Layout',
+            'name' => 'Alapértelmezett',
             'template' => 'theme::layouts.default',
         ],
+        'container' => [
+            'name' => 'Konténer',
+            'template' => 'theme::layouts.container',
+        ],
         'full-width' => [
-            'name' => 'Full Width',
+            'name' => 'Teljes szélesség',
             'template' => 'theme::layouts.full-width',
         ],
         'sidebar-left' => [
-            'name' => 'Sidebar Left',
+            'name' => 'Bal oldalsáv',
             'template' => 'theme::layouts.sidebar-left',
         ],
         'sidebar-right' => [
-            'name' => 'Sidebar Right',
+            'name' => 'Jobb oldalsáv',
             'template' => 'theme::layouts.sidebar-right',
         ],
     ];
@@ -36,6 +40,11 @@ class LayoutService
         return array_keys($this->configs);
     }
 
+    public function getLayouts(): array
+    {
+        return $this->configs;
+    }
+
     public function isValidLayout(string $layoutName): bool
     {
         return array_key_exists($layoutName, $this->configs);
@@ -47,7 +56,7 @@ class LayoutService
     public function getLayoutTemplate(string $layoutName = null): string
     {
         if ($layoutName === null || ! $this->isValidLayout($layoutName)) {
-            $layoutName = 'container';
+            $layoutName = 'default';
         }
 
         return $this->themeHelper->getRealView('layouts.' . $layoutName);
