@@ -3,10 +3,10 @@
 namespace Molitor\Theme\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use Illuminate\View\Component AS ViewComponent;
 use Molitor\Theme\Services\ThemeHelper;
 
-class ThemeComponent extends Component
+class Component extends ViewComponent
 {
     public function __construct(
         protected ?string $view = null

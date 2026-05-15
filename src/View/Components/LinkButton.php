@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Molitor\Theme\View\Components;
 
-class LinkButton extends ThemeComponent
+class LinkButton extends Component
 {
     public function __construct()
     {

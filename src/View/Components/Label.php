@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Molitor\Theme\View\Components;
 
-class Label extends ThemeComponent
+class Label extends Component
 {
     public function __construct()
     {

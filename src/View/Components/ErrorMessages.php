@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Molitor\Theme\View\Components;
 
-class ErrorMessages extends ThemeComponent
+class ErrorMessages extends Component
 {
     public function __construct()
     {

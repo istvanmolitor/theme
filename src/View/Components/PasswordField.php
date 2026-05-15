@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Molitor\Theme\View\Components;
 
-class PasswordField extends ThemeComponent
+class PasswordField extends Component
 {
     public function __construct()
     {
