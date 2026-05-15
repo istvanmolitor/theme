@@ -8,6 +8,7 @@ use Molitor\Setting\Services\SettingHandler;
 use Molitor\Theme\Services\ThemeHelper;
 use Molitor\Theme\Services\ThemeRegistry;
 use Molitor\Theme\Services\ThemeSettingForm;
+use Molitor\Theme\View\Components\Icon;
 use Molitor\Theme\Themes\CorporateTheme;
 use Molitor\Theme\Themes\DarkMinimalTheme;
 use Molitor\Theme\Themes\DefaultTheme;
@@ -46,5 +47,6 @@ class ThemeServiceProvider extends ServiceProvider
     protected function registerThemeComponents(): void
     {
         Blade::componentNamespace('Molitor\\Theme\\View\\Components', 'theme');
+        Blade::component('theme:icon', Icon::class);
     }
 }

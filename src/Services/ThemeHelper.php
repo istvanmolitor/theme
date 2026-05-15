@@ -38,7 +38,7 @@ class ThemeHelper
 
     public function getRealView(string $view): string
     {
-        $theme = $this->getActiveTheme()->getSlug();
+        $theme = $this->getActiveTheme()?->getSlug() ?? 'default';
         $package = $this->getPackage($view);
         $name = $this->getView($view);
 
