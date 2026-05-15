@@ -5,6 +5,7 @@ namespace Molitor\Theme\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Molitor\Setting\Services\SettingHandler;
+use Molitor\Theme\Services\ThemeComponent;
 use Molitor\Theme\Services\ThemeHelper;
 use Molitor\Theme\Services\ThemeRegistry;
 use Molitor\Theme\Services\ThemeSettingForm;
@@ -29,6 +30,8 @@ class ThemeServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'theme');
 
+        $this->registerThemeComponents();
+
         Blade::directive('themeInclude', function ($expression) {
             return "<?php echo app(\Molitor\Theme\Services\ThemeHelper::class)->view({$expression})->render(); ?>";
         });
@@ -39,5 +42,23 @@ class ThemeServiceProvider extends ServiceProvider
         $this->app->singleton(ThemeRegistry::class);
 
         $this->app->make(SettingHandler::class)->registerSettingForm(ThemeSettingForm::class);
+    }
+
+    protected function registerThemeComponents(): void
+    {
+        $componentsPath = __DIR__.'/../../resources/views/components';
+
+        if (! is_dir($componentsPath)) {
+            return;
+        }
+
+        $files = scandir($componentsPath);
+
+        foreach ($files as $file) {
+            if (str_ends_with($file, '.blade.php')) {
+                $componentName = str_replace('.blade.php', '', $file);
+                Blade::component(ThemeComponent::class, $componentName, 'theme');
+            }
+        }
     }
 }
