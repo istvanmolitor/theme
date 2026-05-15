@@ -49,7 +49,6 @@ class ThemeHelper
 
         foreach ($views as $candidate) {
             if ($this->viewExists($candidate)) {
-                dump($candidate);
                 return $candidate;
             }
         }
@@ -64,6 +63,7 @@ class ThemeHelper
 
     public function view(string $view, array $data = []): View
     {
-        return ViewFacade::make($this->getRealView($view), $data);
+        $view = $this->getRealView($view);
+        return ViewFacade::make($view, $data);
     }
 }

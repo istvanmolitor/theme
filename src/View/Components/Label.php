@@ -11,4 +11,3 @@ class Label extends ThemeComponent
         parent::__construct('components.label');
     }
 }
-

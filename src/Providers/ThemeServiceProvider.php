@@ -14,7 +14,6 @@ use Molitor\Theme\Themes\DefaultTheme;
 use Molitor\Theme\Themes\NatureTheme;
 use Molitor\Theme\Themes\PastelDreamTheme;
 use Molitor\Theme\Themes\WarmSunsetTheme;
-use Molitor\Theme\View\Components\ThemeComponent;
 
 class ThemeServiceProvider extends ServiceProvider
 {
