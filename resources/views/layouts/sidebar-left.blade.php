@@ -4,7 +4,6 @@
         <div class="flex flex-col lg:flex-row gap-8">
             <aside class="w-full lg:w-1/4 bg-white rounded-lg shadow-sm p-6">
                 @yield('sidebar')
-                @yield('sidebar')
             </aside>
             <div class="w-full lg:w-3/4">
                 <main>
