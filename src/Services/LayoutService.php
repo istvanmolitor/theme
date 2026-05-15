@@ -7,13 +7,13 @@ namespace Molitor\Theme\Services;
 class LayoutService
 {
     protected array $configs = [
-        'default' => [
-            'name' => 'Alapértelmezett',
-            'template' => 'theme::layouts.default',
-        ],
         'container' => [
-            'name' => 'Konténer',
+            'name' => 'Alapértelmezett',
             'template' => 'theme::layouts.container',
+        ],
+        'box' => [
+            'name' => 'Doboz',
+            'template' => 'theme::layouts.box',
         ],
         'full-width' => [
             'name' => 'Teljes szélesség',
