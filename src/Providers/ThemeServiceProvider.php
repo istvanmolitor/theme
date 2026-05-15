@@ -5,7 +5,6 @@ namespace Molitor\Theme\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Molitor\Setting\Services\SettingHandler;
-use Molitor\Theme\Services\ThemeComponent;
 use Molitor\Theme\Services\ThemeHelper;
 use Molitor\Theme\Services\ThemeRegistry;
 use Molitor\Theme\Services\ThemeSettingForm;
@@ -15,6 +14,7 @@ use Molitor\Theme\Themes\DefaultTheme;
 use Molitor\Theme\Themes\NatureTheme;
 use Molitor\Theme\Themes\PastelDreamTheme;
 use Molitor\Theme\Themes\WarmSunsetTheme;
+use Molitor\Theme\View\Components\ThemeComponent;
 
 class ThemeServiceProvider extends ServiceProvider
 {
@@ -46,19 +46,6 @@ class ThemeServiceProvider extends ServiceProvider
 
     protected function registerThemeComponents(): void
     {
-        $componentsPath = __DIR__.'/../../resources/views/components';
-
-        if (! is_dir($componentsPath)) {
-            return;
-        }
-
-        $files = scandir($componentsPath);
-
-        foreach ($files as $file) {
-            if (str_ends_with($file, '.blade.php')) {
-                $componentName = str_replace('.blade.php', '', $file);
-                Blade::component(ThemeComponent::class, $componentName, 'theme');
-            }
-        }
+        Blade::componentNamespace('Molitor\\Theme\\View\\Components', 'theme');
     }
 }

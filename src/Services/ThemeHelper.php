@@ -18,37 +18,43 @@ class ThemeHelper
         return $this->themeRegistry->getActiveTheme();
     }
 
+    public function getView(string $view): string
+    {
+        if (str_contains($view, '::')) {
+            return explode('::', $view, 2)[1];
+        }
+
+        return $view;
+    }
+
+    private function getPackage(string $view)
+    {
+        if (str_contains($view, '::')) {
+            return explode('::', $view, 2)[0];
+        }
+
+        return 'theme';
+    }
+
     public function getRealView(string $view): string
     {
-        $themeSlug = $this->getActiveTheme()->getSlug();
-
-        if( str_contains($view, '::') ) {
-            $parts = explode('::', $view);
-            $namespace = $parts[0];
-            $name = $parts[1];
-        }
-        else {
-            $namespace = '';
-            $name = $view;
-        }
+        $theme = $this->getActiveTheme()->getSlug();
+        $package = $this->getPackage($view);
+        $name = $this->getView($view);
 
         $views = [
-            'themes.' . $themeSlug . '.' . $name,
-            'themes.' . $themeSlug . '.' . $namespace . '.' . $name,
-            $namespace . '::themes.' . $themeSlug . '.' . $name,
-            $namespace . '::'. $name,
-            'theme::themes.' . $themeSlug . '.' . $name,
-            'theme::' . $name,
-            $name,
+            "{$package}::themes.{$theme}.{$name}",
+            "{$package}::{$name}"
         ];
 
-        foreach( $views as $view ) {
-            if( $this->viewExists($view) ) {
-                return $view;
+        foreach ($views as $candidate) {
+            if ($this->viewExists($candidate)) {
+                dump($candidate);
+                return $candidate;
             }
         }
 
-        throw new \Exception("View: {$namespace}::{$view}. Theme: {$themeSlug}.");
+        throw new \Exception("Package: {$package}. View not found: {$view}. Theme: {$theme}.");
     }
 
     protected function viewExists(string $view): bool
