@@ -35,6 +35,11 @@ class LayoutService
     {
     }
 
+    public function getDefault(): string
+    {
+        return array_key_first($this->configs);
+    }
+
     public function getLayoutNames(): array
     {
         return array_keys($this->configs);
