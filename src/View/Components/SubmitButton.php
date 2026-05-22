@@ -11,4 +11,3 @@ class SubmitButton extends Component
         parent::__construct('components.submit-button');
     }
 }
-

@@ -11,4 +11,3 @@ class ErrorMessages extends Component
         parent::__construct('components.error-messages');
     }
 }
-

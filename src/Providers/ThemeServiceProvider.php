@@ -5,16 +5,15 @@ namespace Molitor\Theme\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Molitor\Setting\Services\SettingHandler;
-use Molitor\Theme\Services\ThemeHelper;
 use Molitor\Theme\Services\ThemeRegistry;
 use Molitor\Theme\Services\ThemeSettingForm;
-use Molitor\Theme\View\Components\Icon;
 use Molitor\Theme\Themes\CorporateTheme;
 use Molitor\Theme\Themes\DarkMinimalTheme;
 use Molitor\Theme\Themes\DefaultTheme;
 use Molitor\Theme\Themes\NatureTheme;
 use Molitor\Theme\Themes\PastelDreamTheme;
 use Molitor\Theme\Themes\WarmSunsetTheme;
+use Molitor\Theme\View\Components\Icon;
 
 class ThemeServiceProvider extends ServiceProvider
 {

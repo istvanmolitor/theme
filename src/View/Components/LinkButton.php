@@ -11,4 +11,3 @@ class LinkButton extends Component
         parent::__construct('components.link-button');
     }
 }
-

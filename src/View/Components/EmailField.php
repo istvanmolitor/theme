@@ -11,4 +11,3 @@ class EmailField extends Component
         parent::__construct('components.email-field');
     }
 }
-

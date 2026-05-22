@@ -9,9 +9,7 @@ class ThemeHelper
 {
     public function __construct(
         protected ThemeRegistry $themeRegistry
-    )
-    {
-    }
+    ) {}
 
     public function getActiveTheme(): ?Theme
     {
@@ -44,7 +42,7 @@ class ThemeHelper
 
         $views = [
             "{$package}::themes.{$theme}.{$name}",
-            "{$package}::{$name}"
+            "{$package}::{$name}",
         ];
 
         foreach ($views as $candidate) {
@@ -64,6 +62,7 @@ class ThemeHelper
     public function view(string $view, array $data = []): View
     {
         $view = $this->getRealView($view);
+
         return ViewFacade::make($view, $data);
     }
 }

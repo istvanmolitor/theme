@@ -11,4 +11,3 @@ class PasswordField extends Component
         parent::__construct('components.password-field');
     }
 }
-

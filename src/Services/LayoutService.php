@@ -31,9 +31,7 @@ class LayoutService
 
     public function __construct(
         private ThemeHelper $themeHelper
-    )
-    {
-    }
+    ) {}
 
     public function getDefault(): string
     {
@@ -58,12 +56,12 @@ class LayoutService
     /**
      * Get the template for a specific layout.
      */
-    public function getLayoutTemplate(string $layoutName = null): string
+    public function getLayoutTemplate(?string $layoutName = null): string
     {
         if ($layoutName === null || ! $this->isValidLayout($layoutName)) {
             $layoutName = 'container';
         }
 
-        return $this->themeHelper->getRealView('layouts.' . $layoutName);
+        return $this->themeHelper->getRealView('layouts.'.$layoutName);
     }
 }

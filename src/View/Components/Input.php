@@ -11,4 +11,3 @@ class Input extends Component
         parent::__construct('components.input');
     }
 }
-
