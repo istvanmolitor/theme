@@ -26,3 +26,21 @@ Ez létrehozza a `config/theme.php` fájlt, ahol testreszabhatja a téma beáll�
 
 A témák a `resources/views/themes` könyvtárban találhatók.
 
+
+## Seeder regisztrálása
+
+A jogosultságok kezdeti beállításához regisztráld a seedert a `database/seeders/DatabaseSeeder.php` fájlban:
+
+```php
+use Molitor\Theme\database\seeders\ThemeSeeder;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $this->call([
+            ThemeSeeder::class,
+        ]);
+    }
+}
+```
