@@ -3,7 +3,6 @@
 namespace Molitor\Theme\Themes;
 
 use Molitor\Theme\Services\Theme;
-use Override;
 
 class CorporateTheme extends Theme
 {
