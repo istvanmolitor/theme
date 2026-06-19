@@ -16,6 +16,11 @@ class PastelDreamTheme extends Theme
         return 'pastel';
     }
 
+    public function getPackage(): string
+    {
+        return 'theme';
+    }
+
     public function getDescription(): string
     {
         return 'Lágy pasztell színek, letisztult elrendezés. Ideális blog és életmód oldalakhoz.';

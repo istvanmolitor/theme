@@ -32,7 +32,7 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerThemeComponents();
 
         Blade::directive('themeInclude', function ($expression) {
-            return "<?php echo app(\Molitor\Theme\Services\ThemeHelper::class)->view({$expression})->render(); ?>";
+            return "<?php echo app(\Molitor\Theme\Services\ThemeHelper::class)->renderView({$expression}); ?>";
         });
     }
 

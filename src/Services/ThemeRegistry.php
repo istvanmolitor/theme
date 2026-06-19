@@ -48,11 +48,12 @@ class ThemeRegistry
     {
         if ($this->activeTheme === null) {
             $slug = app(SettingHandler::class)->get('theme', 'theme');
-            if (! $slug) {
-                return null;
+            if ($slug) {
+                $this->activeTheme = $this->getTheme($slug);
             }
-
-            $this->activeTheme = $this->getTheme($slug);
+            else {
+                $this->activeTheme = array_first($this->themes);
+            }
         }
 
         return $this->activeTheme;

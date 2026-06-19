@@ -16,6 +16,11 @@ class DarkMinimalTheme extends Theme
         return 'dark-minimal';
     }
 
+    public function getPackage(): string
+    {
+        return 'theme';
+    }
+
     public function getDescription(): string
     {
         return 'Sötét, minimalista dizájn. Elegáns megjelenés technika- és portfólió oldalakhoz.';

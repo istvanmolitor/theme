@@ -36,22 +36,13 @@ class ThemeHelper
 
     public function getRealView(string $view): string
     {
-        $theme = $this->getActiveTheme()?->getSlug() ?? 'default';
-        $package = $this->getPackage($view);
+        $activeTheme = $this->getActiveTheme();
+
+        $package = $activeTheme->getPackage();
+        $theme = $activeTheme->getSlug();
         $name = $this->getView($view);
 
-        $views = [
-            "{$package}::themes.{$theme}.{$name}",
-            "{$package}::{$name}",
-        ];
-
-        foreach ($views as $candidate) {
-            if ($this->viewExists($candidate)) {
-                return $candidate;
-            }
-        }
-
-        throw new \Exception("Package: {$package}. View not found: {$view}. Theme: {$theme}.");
+        return "{$package}::themes.{$theme}.{$name}";
     }
 
     protected function viewExists(string $view): bool
@@ -64,5 +55,11 @@ class ThemeHelper
         $view = $this->getRealView($view);
 
         return ViewFacade::make($view, $data);
+    }
+
+    public function renderView(string $view, array $data = []): string
+    {
+        return $view;
+        return $this->view($view, $data)->render();
     }
 }

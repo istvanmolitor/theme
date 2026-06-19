@@ -8,6 +8,8 @@ abstract class Theme
 
     abstract public function getSlug(): string;
 
+    abstract public function getPackage(): string;
+
     public function getDescription(): string
     {
         return '';

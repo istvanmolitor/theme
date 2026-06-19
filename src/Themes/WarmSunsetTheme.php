@@ -16,6 +16,11 @@ class WarmSunsetTheme extends Theme
         return 'warm';
     }
 
+    public function getPackage(): string
+    {
+        return 'theme';
+    }
+
     public function getDescription(): string
     {
         return 'Meleg, narancs és bordó árnyalatokból álló téma. Kreatív és lifestyle tartalmakhoz ajánlott.';

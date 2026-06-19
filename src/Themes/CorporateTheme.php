@@ -3,6 +3,7 @@
 namespace Molitor\Theme\Themes;
 
 use Molitor\Theme\Services\Theme;
+use Override;
 
 class CorporateTheme extends Theme
 {
@@ -14,6 +15,11 @@ class CorporateTheme extends Theme
     public function getSlug(): string
     {
         return 'corporate';
+    }
+    
+    public function getPackage(): string
+    {
+        return 'theme';
     }
 
     public function getDescription(): string

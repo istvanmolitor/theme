@@ -16,6 +16,11 @@ class DefaultTheme extends Theme
         return 'default';
     }
 
+    public function getPackage(): string
+    {
+        return 'theme';
+    }
+
     public function getDescription(): string
     {
         return 'Az alapértelmezett, tiszta és modern megjelenés. Ideális általános célú weboldalakhoz.';

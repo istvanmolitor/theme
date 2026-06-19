@@ -16,6 +16,11 @@ class NatureTheme extends Theme
         return 'nature';
     }
 
+    public function getPackage(): string
+    {
+        return 'theme';
+    }
+
     public function getDescription(): string
     {
         return 'Természetes, zöld tónusokkal teli témakép. Tökéletes környezeti és egészségügyi tartalmakhoz.';
