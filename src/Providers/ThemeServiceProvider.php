@@ -13,7 +13,6 @@ use Molitor\Theme\Themes\DefaultTheme;
 use Molitor\Theme\Themes\NatureTheme;
 use Molitor\Theme\Themes\PastelDreamTheme;
 use Molitor\Theme\Themes\WarmSunsetTheme;
-use Molitor\Theme\View\Components\Icon;
 
 class ThemeServiceProvider extends ServiceProvider
 {
@@ -29,7 +28,7 @@ class ThemeServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'theme');
 
-        $this->registerThemeComponents();
+        Blade::componentNamespace('Molitor\\Theme\\View\\Components', 'theme');
 
         Blade::directive('themeInclude', function ($expression) {
             return "<?php echo app(\Molitor\Theme\Services\ThemeHelper::class)->renderView({$expression}); ?>";
@@ -43,9 +42,4 @@ class ThemeServiceProvider extends ServiceProvider
         $this->app->make(SettingHandler::class)->registerSettingForm(ThemeSettingForm::class);
     }
 
-    protected function registerThemeComponents(): void
-    {
-        Blade::componentNamespace('Molitor\\Theme\\View\\Components', 'theme');
-        Blade::component('theme:icon', Icon::class);
-    }
 }
