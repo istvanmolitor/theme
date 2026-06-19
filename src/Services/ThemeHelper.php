@@ -25,15 +25,6 @@ class ThemeHelper
         return $view;
     }
 
-    private function getPackage(string $view)
-    {
-        if (str_contains($view, '::')) {
-            return explode('::', $view, 2)[0];
-        }
-
-        return 'theme';
-    }
-
     public function getRealView(string $view): string
     {
         $activeTheme = $this->getActiveTheme();
