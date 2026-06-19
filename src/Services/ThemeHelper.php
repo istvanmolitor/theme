@@ -42,6 +42,11 @@ class ThemeHelper
         $theme = $activeTheme->getSlug();
         $name = $this->getView($view);
 
+        $view = "{$package}::{$name}";
+        if($this->viewExists($view)) {
+            return $view;
+        } 
+
         return "{$package}::themes.{$theme}.{$name}";
     }
 
