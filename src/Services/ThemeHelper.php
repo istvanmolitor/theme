@@ -25,25 +25,48 @@ class ThemeHelper
         return $view;
     }
 
+    public function getViewPackage(string $view): ?string
+    {
+        if (str_contains($view, '::')) {
+            return explode('::', $view, 2)[0];
+        }
+
+        return null;
+    }
+
     public function getRealView(string $view): string
     {
         $activeTheme = $this->getActiveTheme();
-
-        $package = $activeTheme->getPackage();
+        
+        $viewPackage = $this->getViewPackage($view);
+        $themePackage = $activeTheme->getPackage();
         $theme = $activeTheme->getSlug();
         $name = $this->getView($view);
 
-        $view = "theme::{$name}";
+        if($viewPackage) {
+            $view = "{$themePackage}::themes.{$theme}.packages.{$viewPackage}.{$name}";
+            if($this->viewExists($view)) {
+                return $view;
+            }
+            
+            $view = "{$viewPackage}::{$name}";
+            if($this->viewExists($view)) {
+                return $view;
+            }
+        }
+
+
+        $view = "{$themePackage}::themes.{$theme}.{$name}";
         if($this->viewExists($view)) {
             return $view;
         }
 
-        $view = "{$package}::{$name}";
+        $view = "{$themePackage}::{$name}";
         if($this->viewExists($view)) {
             return $view;
-        } 
+        }
 
-        return "{$package}::themes.{$theme}.{$name}";
+        return "theme::{$name}";
     }
 
     public function viewExists(string $view): bool
