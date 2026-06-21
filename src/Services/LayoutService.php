@@ -8,24 +8,24 @@ class LayoutService
 {
     protected array $configs = [
         'container' => [
-            'name' => 'Alapértelmezett',
+            'name' => 'Konténer',
             'template' => 'theme::layouts.container',
         ],
         'box' => [
-            'name' => 'Doboz',
-            'template' => 'theme::layouts.box',
+            'name' => 'Középen',
+            'template' => 'theme::layouts.centered',
         ],
         'full-width' => [
             'name' => 'Teljes szélesség',
             'template' => 'theme::layouts.full-width',
         ],
-        'sidebar-left' => [
+        'left-sidebar' => [
             'name' => 'Bal oldalsáv',
-            'template' => 'theme::layouts.sidebar-left',
+            'template' => 'theme::layouts.left-sidebar',
         ],
-        'sidebar-right' => [
+        'right-sidebar' => [
             'name' => 'Jobb oldalsáv',
-            'template' => 'theme::layouts.sidebar-right',
+            'template' => 'theme::layouts.right-sidebar',
         ],
     ];
 

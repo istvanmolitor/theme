@@ -18,6 +18,8 @@ class ThemeServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+
         $registry = $this->app->make(ThemeRegistry::class);
         $registry->register(DefaultTheme::class);
         $registry->register(DarkMinimalTheme::class);
