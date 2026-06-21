@@ -7,7 +7,7 @@
     <title>{{ $page->title ?? config('app.name') }}</title>
     @vite('resources/css/app.css')
 </head>
-<body class="h-full flex flex-col bg-gray-50 text-gray-900 antialiased">
+<x-theme::component view="partials.body">
     @yield('body')
-</body>
+</x-theme::component>
 </html>

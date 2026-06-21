@@ -14,6 +14,17 @@ class Component extends ViewComponent
 
     public function render(): View
     {
-        return app(ThemeHelper::class)->view($this->view, $this->data());
+        $themeHelper = app(ThemeHelper::class);
+        $realView = $themeHelper->getRealView($this->view);
+
+        if($themeHelper->viewExists($realView)) {
+            return view($realView, $this->data());
+        }
+        else {
+            return view('theme::partials.no-component-template', [
+                'view' => $this->view,
+                'realView' => $realView,
+            ]);
+        }
     }
 }

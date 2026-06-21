@@ -33,6 +33,11 @@ class ThemeHelper
         $theme = $activeTheme->getSlug();
         $name = $this->getView($view);
 
+        $view = "theme::{$name}";
+        if($this->viewExists($view)) {
+            return $view;
+        }
+
         $view = "{$package}::{$name}";
         if($this->viewExists($view)) {
             return $view;
@@ -41,7 +46,7 @@ class ThemeHelper
         return "{$package}::themes.{$theme}.{$name}";
     }
 
-    protected function viewExists(string $view): bool
+    public function viewExists(string $view): bool
     {
         return view()->exists($view);
     }
@@ -55,7 +60,6 @@ class ThemeHelper
 
     public function renderView(string $view, array $data = []): string
     {
-        return $view;
         return $this->view($view, $data)->render();
     }
 }
