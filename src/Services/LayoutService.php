@@ -11,7 +11,7 @@ class LayoutService
             'name' => 'Konténer',
             'template' => 'theme::layouts.container',
         ],
-        'box' => [
+        'centered' => [
             'name' => 'Középen',
             'template' => 'theme::layouts.centered',
         ],

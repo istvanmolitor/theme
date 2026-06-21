@@ -7,5 +7,5 @@
                 <x-theme::component view="layouts.partials.main" />
             </div>
         </div>
-    </x-theme::component />
+    </x-theme::component>
 @endsection
