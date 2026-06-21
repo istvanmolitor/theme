@@ -2,10 +2,12 @@
 
 @section('body')
     <x-theme::component view="layouts.partials.layout">
-        <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="bg-white py-8 px-4 sm:px-10">
-                <x-theme::component view="layouts.partials.main" />
+        <x-theme::component view="layouts.partials.page">
+            <div class="sm:mx-auto sm:w-full sm:max-w-md">
+                <div class="bg-white py-8 px-4 sm:px-10">
+                    <x-theme::component view="layouts.partials.main" />
+                </div>
             </div>
-        </div>
+        </x-theme::component>    
     </x-theme::component>
 @endsection
