@@ -59,6 +59,23 @@ class ThemeRegistry
         return $this->activeTheme;
     }
 
+    public function getDefault(): ?string
+    {
+        return array_key_first($this->themes);
+    }
+
+    public function getOptions() : array
+    {
+        $options = [];
+        foreach ($this->getThemes() as $theme) {
+            $options[] = [
+                'value' => $theme->getSlug(),
+                'label' => $theme->getName()
+            ];
+        }
+        return $options;
+    }
+
     public function toArray(): array
     {
         $themes = [];

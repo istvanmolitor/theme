@@ -2,6 +2,7 @@
 
 namespace Molitor\Theme\Services;
 
+use Molitor\Setting\Enums\SettingFieldType;
 use Molitor\Setting\Services\SettingForm;
 
 class ThemeSettingForm extends SettingForm
@@ -19,14 +20,16 @@ class ThemeSettingForm extends SettingForm
     public function getFields(): array
     {
         return [
-            'theme',
-        ];
-    }
-
-    public function getDefaultValues(): array
-    {
-        return [
-            'theme' => null,
+            'theme' => [
+                'label' => 'Téma',
+                'type' => SettingFieldType::Select,
+                'options' => app(ThemeRegistry::class)->getOptions(),
+                'default' => app(ThemeRegistry::class)->getDefault(),
+            ],
+            'logo' => [
+                'label' => 'Logó',
+                'type' => SettingFieldType::Image,
+            ],
         ];
     }
 
