@@ -1,7 +1,14 @@
 @php
     $menuName = $menuName ?? 'main';
     $variant = $variant ?? 'desktop';
-    $items = $items ?? app(\Molitor\Menu\Services\MenuManager::class)->build($menuName)->getMenuItems();
+    $items = menu($menuName);
+
+    $linkClass = fn(bool $isActive, string $v = null) => match(true) {
+        ($v ?? $variant) === 'desktop' && $isActive => 'inline-flex items-center gap-1 px-4 py-2 rounded-md bg-white text-orange-600 font-semibold',
+        ($v ?? $variant) === 'desktop'               => 'inline-flex items-center gap-1 px-4 py-2 rounded-md text-orange-100 hover:bg-orange-500 hover:text-white transition-colors',
+        $isActive                                    => 'block rounded-md bg-white/20 px-3 py-2 font-semibold text-white',
+        default                                      => 'block rounded-md px-3 py-2 text-orange-100 hover:bg-white/10 hover:text-white transition-colors',
+    };
 @endphp
 
 <ul class="list-none m-0 p-0 {{ $variant === 'mobile' ? 'space-y-2' : 'flex items-center gap-2' }}">
@@ -12,9 +19,7 @@
                @if ($variant === 'desktop' && count($children) > 0)
                    onclick="event.preventDefault(); this.parentElement.querySelector(':scope > ul')?.classList.toggle('hidden');"
                @endif
-               class="{{ $variant === 'mobile'
-                    ? ($item->isActive() ? 'block rounded-md bg-white/20 px-3 py-2 font-semibold text-white' : 'block rounded-md px-3 py-2 text-orange-100 hover:bg-white/10 hover:text-white transition-colors')
-                    : ($item->isActive() ? 'inline-flex items-center gap-1 px-4 py-2 rounded-md bg-white text-orange-600 font-semibold' : 'inline-flex items-center gap-1 px-4 py-2 rounded-md text-orange-100 hover:bg-orange-500 hover:text-white transition-colors') }}">
+               class="{{ $linkClass($item->isActive()) }}">
                 {{ $item->getLabel() }}
             </a>
 
@@ -23,7 +28,7 @@
                     @foreach ($children as $child)
                         <li>
                             <a href="{{ $child->getUrl() ?? '#' }}"
-                               class="{{ $child->isActive() ? 'block rounded-md bg-white/20 px-3 py-2 font-semibold text-white' : 'block rounded-md px-3 py-2 text-orange-100 hover:bg-white/10 hover:text-white transition-colors' }}">
+                               class="{{ $linkClass($child->isActive(), 'mobile') }}">
                                 {{ $child->getLabel() }}
                             </a>
                         </li>

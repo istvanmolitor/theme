@@ -1,7 +1,7 @@
 @php
     $menuName = $menuName ?? 'main';
     $variant = $variant ?? 'desktop';
-    $items = $items ?? app(\Molitor\Menu\Services\MenuManager::class)->build($menuName)->getMenuItems();
+    $items = menu($menuName);
 @endphp
 
 <ul class="list-none m-0 p-0 {{ $variant === 'mobile' ? 'space-y-4' : 'flex items-center gap-12' }}">
