@@ -2,37 +2,11 @@
 
 namespace Molitor\Theme\Services;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\View as ViewFacade;
-
 class ThemeHelper
 {
     public function __construct(
         protected ThemeRegistry $themeRegistry
     ) {}
-
-    public function getActiveTheme(): ?Theme
-    {
-        return $this->themeRegistry->getActiveTheme();
-    }
-
-    public function getView(string $view): string
-    {
-        if (str_contains($view, '::')) {
-            return explode('::', $view, 2)[1];
-        }
-
-        return $view;
-    }
-
-    public function getViewPackage(string $view): ?string
-    {
-        if (str_contains($view, '::')) {
-            return explode('::', $view, 2)[0];
-        }
-
-        return null;
-    }
 
     public function viewExists(string $view): bool
     {
@@ -41,12 +15,19 @@ class ThemeHelper
 
     public function getOpportunities(string $view): array
     {
-        $activeTheme = $this->getActiveTheme();
-        
-        $viewPackage = $this->getViewPackage($view);
+        if (str_contains($view, '::')) {
+            $parts = explode('::', $view, 2);
+            $viewPackage = $parts[0]; 
+            $name = $parts[1];
+        }
+        else {
+            $viewPackage = null; 
+            $name = $view;
+        }
+
+        $activeTheme = $this->themeRegistry->getActiveTheme();
         $themePackage = $activeTheme->getPackage();
         $theme = $activeTheme->getSlug();
-        $name = $this->getView($view);
 
         $opportunities = [];
 
@@ -76,5 +57,10 @@ class ThemeHelper
         }
 
         return null;
+    }
+
+    public function template(string $view, array $data = [], array $mergeData = [])
+    {
+        return view($this->getRealView($view), $data, $mergeData);
     }
 }

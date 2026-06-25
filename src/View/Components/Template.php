@@ -15,7 +15,6 @@ class Template extends ViewComponent
     public function render(): View
     {
         $themeHelper = app(ThemeHelper::class);
-
         $realView = $themeHelper->getRealView($this->view);
 
         if($realView) {

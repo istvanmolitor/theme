@@ -5,6 +5,7 @@ namespace Molitor\Theme\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Molitor\Setting\Services\SettingHandler;
+use Molitor\Theme\Services\ThemeHelper;
 use Molitor\Theme\Services\ThemeRegistry;
 use Molitor\Theme\Services\ThemeSettingForm;
 use Molitor\Theme\Themes\CorporateTheme;
@@ -36,6 +37,7 @@ class ThemeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(ThemeRegistry::class);
+        $this->app->singleton(ThemeHelper::class);
 
         $this->app->make(SettingHandler::class)->registerSettingForm(ThemeSettingForm::class);
     }
