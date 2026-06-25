@@ -24,7 +24,10 @@
 
             {{-- Desktop Navigation --}}
             <x-theme::template view="layouts.partials.menu" />
-            
+
+            {{-- Search --}}
+            <x-theme::template view="layouts.partials.search" />
+
             {{-- Mobile menu button --}}
             <div class="lg:hidden">
                 <button type="button"
