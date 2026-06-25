@@ -23,10 +23,8 @@
             </div>
 
             {{-- Desktop Navigation --}}
-            <nav class="hidden lg:flex space-x-1">
-                @themeInclude('layouts.partials.menu', ['menuName' => $menuName ?? 'main', 'variant' => 'desktop'])
-            </nav>
-
+            <x-theme::component view="layouts.partials.menu" />
+            
             {{-- Mobile menu button --}}
             <div class="lg:hidden">
                 <button type="button"
@@ -40,11 +38,7 @@
         </div>
 
         {{-- Mobile Navigation --}}
-        <div id="mobile-menu" class="hidden lg:hidden pb-6 pt-2">
-            <div class="flex flex-col space-y-1">
-                @themeInclude('layouts.partials.menu', ['menuName' => $menuName ?? 'main', 'variant' => 'mobile'])
-            </div>
-        </div>
+        <x-theme::component view="layouts.partials.mobile-menu" />
     </div>
 
     {{-- Content Region for custom header content --}}

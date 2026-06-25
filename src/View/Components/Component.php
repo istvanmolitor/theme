@@ -9,21 +9,22 @@ use Molitor\Theme\Services\ThemeHelper;
 class Component extends ViewComponent
 {
     public function __construct(
-        protected ?string $view = null
+        protected string $view
     ) {}
 
     public function render(): View
     {
         $themeHelper = app(ThemeHelper::class);
+
         $realView = $themeHelper->getRealView($this->view);
 
-        if($themeHelper->viewExists($realView)) {
+        if($realView) {
             return view($realView, $this->data());
         }
         else {
             return view('theme::partials.no-component-template', [
                 'view' => $this->view,
-                'realView' => $realView,
+                'opportunities' => $themeHelper->getOpportunities($this->view),
             ]);
         }
     }

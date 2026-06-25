@@ -12,9 +12,7 @@
             </div>
 
             {{-- Desktop Navigation --}}
-            <nav class="hidden md:flex space-x-6 items-center">
-                @themeInclude('layouts.partials.menu', ['menuName' => $menuName ?? 'main', 'variant' => 'desktop'])
-            </nav>
+            <x-theme::component view="layouts.partials.menu" />
 
             {{-- Mobile menu button --}}
             <div class="md:hidden">
@@ -30,11 +28,7 @@
         </div>
 
         {{-- Mobile Navigation --}}
-        <div id="mobile-menu" class="hidden md:hidden pb-6 animate-fade-in">
-            <div class="flex flex-col space-y-3 bg-pink-50/50 p-4 rounded-3xl">
-                @themeInclude('layouts.partials.menu', ['menuName' => $menuName ?? 'main', 'variant' => 'mobile'])
-            </div>
-        </div>
+        <x-theme::component view="layouts.partials.mobile-menu" />
     </div>
 
     {{-- Content Region for custom header content --}}

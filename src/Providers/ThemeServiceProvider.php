@@ -31,10 +31,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'theme');
 
         Blade::componentNamespace('Molitor\\Theme\\View\\Components', 'theme');
-
-        Blade::directive('themeInclude', function ($expression) {
-            return "<?php echo app(\Molitor\Theme\Services\ThemeHelper::class)->renderView({$expression}); ?>";
-        });
     }
 
     public function register()

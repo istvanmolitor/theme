@@ -34,7 +34,12 @@ class ThemeHelper
         return null;
     }
 
-    public function getRealView(string $view): string
+    public function viewExists(string $view): bool
+    {
+        return view()->exists($view);
+    }
+
+    public function getOpportunities(string $view): array
     {
         $activeTheme = $this->getActiveTheme();
         
@@ -43,46 +48,33 @@ class ThemeHelper
         $theme = $activeTheme->getSlug();
         $name = $this->getView($view);
 
+        $opportunities = [];
+
         if($viewPackage) {
-            $view = "{$themePackage}::themes.{$theme}.packages.{$viewPackage}.{$name}";
-            if($this->viewExists($view)) {
-                return $view;
+            $opportunities = [
+                "{$themePackage}::themes.{$theme}.packages.{$viewPackage}.{$name}",
+                "{$viewPackage}::{$name}",
+            ];
+        }
+
+        $opportunities = array_merge($opportunities, [
+            "{$themePackage}::themes.{$theme}.{$name}",
+            "{$themePackage}::{$name}",
+            "theme::{$name}",
+        ]);
+
+        return array_unique($opportunities);
+    }
+
+    public function getRealView(string $view): ?string
+    {
+        foreach($this->getOpportunities($view) as $opportunity)
+        {
+            if($this->viewExists($opportunity)) {
+                return $opportunity;
             }
-            
-            $view = "{$viewPackage}::{$name}";
-            if($this->viewExists($view)) {
-                return $view;
-            }
         }
 
-
-        $view = "{$themePackage}::themes.{$theme}.{$name}";
-        if($this->viewExists($view)) {
-            return $view;
-        }
-
-        $view = "{$themePackage}::{$name}";
-        if($this->viewExists($view)) {
-            return $view;
-        }
-
-        return "theme::{$name}";
-    }
-
-    public function viewExists(string $view): bool
-    {
-        return view()->exists($view);
-    }
-
-    public function view(string $view, array $data = []): View
-    {
-        $view = $this->getRealView($view);
-
-        return ViewFacade::make($view, $data);
-    }
-
-    public function renderView(string $view, array $data = []): string
-    {
-        return $this->view($view, $data)->render();
+        return null;
     }
 }
