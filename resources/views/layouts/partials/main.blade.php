@@ -1,5 +1,6 @@
-<x-theme::component view="layouts.partials.content-top" />
+<x-theme::template view="layouts.partials.content-top" />
 <main>
+    <x-theme::template view="layouts.partials.page-title" />
     @yield('content')
 </main>
-<x-theme::component view="layouts.partials.content-bottom" />
+<x-theme::template view="layouts.partials.content-bottom" />

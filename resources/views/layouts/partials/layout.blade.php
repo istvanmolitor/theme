@@ -1,6 +1,6 @@
-<x-theme::component view="layouts.partials.header" />
-<x-theme::component view="layouts.partials.top" />
+<x-theme::template view="layouts.partials.header" />
+<x-theme::template view="layouts.partials.top" />
 {{ $slot }}
-<x-theme::component view="layouts.partials.bottom" />
-<x-theme::component view="layouts.partials.footer" />
+<x-theme::template view="layouts.partials.bottom" />
+<x-theme::template view="layouts.partials.footer" />
 @yield('script')

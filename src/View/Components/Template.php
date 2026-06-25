@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component as ViewComponent;
 use Molitor\Theme\Services\ThemeHelper;
 
-class Component extends ViewComponent
+class Template extends ViewComponent
 {
     public function __construct(
         protected string $view

@@ -7,7 +7,7 @@
     <title>{{ $page->title ?? config('app.name') }}</title>
     @vite('resources/css/app.css')
 </head>
-<x-theme::component view="partials.body">
+<x-theme::template view="partials.body">
     @yield('body')
-</x-theme::component>
+</x-theme::template>
 </html>

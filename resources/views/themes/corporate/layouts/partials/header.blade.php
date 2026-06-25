@@ -23,7 +23,7 @@
             </div>
 
             {{-- Desktop Navigation --}}
-            <x-theme::component view="layouts.partials.menu" />
+            <x-theme::template view="layouts.partials.menu" />
             
             {{-- Mobile menu button --}}
             <div class="lg:hidden">
@@ -38,7 +38,7 @@
         </div>
 
         {{-- Mobile Navigation --}}
-        <x-theme::component view="layouts.partials.mobile-menu" />
+        <x-theme::template view="layouts.partials.mobile-menu" />
     </div>
 
     {{-- Content Region for custom header content --}}

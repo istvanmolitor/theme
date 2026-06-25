@@ -1,13 +1,13 @@
 @extends('theme::layouts.base')
 
 @section('body')
-    <x-theme::component view="layouts.partials.layout">
-        <x-theme::component view="layouts.partials.page">
+    <x-theme::template view="layouts.partials.layout">
+        <x-theme::template view="layouts.partials.page">
             <div class="sm:mx-auto sm:w-full sm:max-w-md">
                 <div class="bg-white py-8 px-4 sm:px-10">
-                    <x-theme::component view="layouts.partials.main" />
+                    <x-theme::template view="layouts.partials.main" />
                 </div>
             </div>
-        </x-theme::component>    
-    </x-theme::component>
+        </x-theme::template>    
+    </x-theme::template>
 @endsection

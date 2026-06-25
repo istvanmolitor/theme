@@ -1,3 +1,3 @@
-<x-theme::component view="layouts.partials.page-top" />
+<x-theme::template view="layouts.partials.page-top" />
 {{ $slot }}
-<x-theme::component view="layouts.partials.page-bottom" />
+<x-theme::template view="layouts.partials.page-bottom" />
