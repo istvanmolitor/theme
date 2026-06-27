@@ -29,22 +29,24 @@ class ThemeHelper
         $themePackage = $activeTheme->getPackage();
         $theme = $activeTheme->getSlug();
 
-        $opportunities = [];
-
+        /**
+         * Ha konkrétan megadtuk a csomagot akkor vagy a téma alatt van vagy az eredeti helyén.
+         */
         if($viewPackage) {
-            $opportunities = [
+            return [
                 "{$themePackage}::themes.{$theme}.packages.{$viewPackage}.{$name}",
                 "{$viewPackage}::{$name}",
             ];
         }
 
-        $opportunities = array_merge($opportunities, [
+        /**
+         * Ha nincs megadva csomag. Akkor a témán belül 
+         */
+        return [
             "{$themePackage}::themes.{$theme}.{$name}",
-            "{$themePackage}::{$name}",
+            //"{$themePackage}::{$name}",
             "theme::{$name}",
-        ]);
-
-        return array_unique($opportunities);
+        ];
     }
 
     public function getRealView(string $view): ?string
@@ -61,6 +63,15 @@ class ThemeHelper
 
     public function template(string $view, array $data = [], array $mergeData = [])
     {
-        return view($this->getRealView($view), $data, $mergeData);
+        $realView = $this->getRealView($view);
+        if($realView) {
+            return view($realView, $data, $mergeData);
+        }
+        else {
+            return view('theme::partials.no-component-template', [
+                'view' => $view,
+                'opportunities' => $this->getOpportunities($view),
+            ]);
+        }
     }
 }

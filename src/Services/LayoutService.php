@@ -62,6 +62,6 @@ class LayoutService
             $layoutName = 'container';
         }
 
-        return $this->themeHelper->getRealView('layouts.'.$layoutName);
+        return $this->themeHelper->getRealView('theme::layouts.'.$layoutName);
     }
 }

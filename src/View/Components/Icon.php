@@ -5,14 +5,14 @@ namespace Molitor\Theme\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component as ViewComponent;
 
-class Template extends ViewComponent
+class Icon extends ViewComponent
 {
     public function __construct(
-        protected string $view
+        public string $name = ''
     ) {}
 
     public function render(): View
     {
-        return template($this->view, $this->data());
+        return view('theme::components.icon');
     }
 }
