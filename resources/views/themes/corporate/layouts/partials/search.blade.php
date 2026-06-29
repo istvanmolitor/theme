@@ -2,7 +2,7 @@
     $searchRoute = collect(['news.search', 'cms.search', 'search'])
         ->first(fn($r) => \Illuminate\Support\Facades\Route::has($r));
     $searchAction = $searchRoute ? route($searchRoute) : '/search';
-    $searchQuery = request()->string('q')->value();
+    $searchQuery = request()->string('search')->value();
 @endphp
 
 <form action="{{ $searchAction }}" method="GET" role="search" class="hidden lg:flex items-center">
@@ -14,7 +14,7 @@
         </svg>
         <input
             type="search"
-            name="q"
+            name="search"
             value="{{ $searchQuery }}"
             placeholder="Keresés..."
             aria-label="Keresés"
