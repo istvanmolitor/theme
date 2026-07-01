@@ -28,6 +28,11 @@
             {{-- Search --}}
             <x-theme::template view="layouts.partials.search" />
 
+            {{-- Language Switcher --}}
+            <div class="hidden lg:flex items-center">
+                <x-language-switcher />
+            </div>
+
             {{-- Mobile menu button --}}
             <div class="lg:hidden">
                 <button type="button"

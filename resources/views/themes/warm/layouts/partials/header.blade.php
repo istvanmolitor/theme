@@ -19,6 +19,11 @@
             {{-- Search --}}
             <x-theme::template view="layouts.partials.search" />
 
+            {{-- Language Switcher --}}
+            <div class="hidden md:flex items-center">
+                <x-language-switcher />
+            </div>
+
             {{-- Mobile menu button --}}
             <div class="md:hidden">
                 <button type="button"
